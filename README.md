@@ -54,14 +54,11 @@ web application.
 
 ## Config
 
-```
-name = "My App Name"
-subgraph = { version = "0.0.15", config = "./subgraph.toml" }
-```
+Creates a config file that serves dual purpose for both the hxql CLI and the Subgraph API.
 
 ## API
 
-- `init` - Clones the hxql starter into a custom named folder.
+- `init` - Clones the hxql starter into a custom named folder and a base subgraph configuration.
 - `run` - Reads the `hxql.toml` file and uses docker (subgraph) to start the web server.
 - `datasource`
     - `--add` - Adds a new datasource.
