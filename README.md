@@ -64,10 +64,14 @@ subgraph = { version = "0.0.15", config = "./subgraph.toml" }
 - `init` - Clones the hxql starter into a custom named folder.
 - `run` - Reads the `hxql.toml` file and uses docker (subgraph) to start the web server.
 - `datasource`
-    - `--add` - Adds a new datasource to the subgraph config.
-    - `--remove` - Removes a datasource from the subgraph config.
+    - `--add` - Adds a new datasource.
+    - `--remove` - Removes a datasource.
     - `--modify` - Updates a datasource.
 - `entity`
-    - `--add`
-    - `--remove`
-    - `--edit`
+    - `--add` - Adds a new entity.
+    - `--remove` - Removes a entity.
+    - `--modify` - Updates a entity.
+- `guard`
+    - `--add` - Adds a new guard to the subgraph config.
+    - `--remove` - Removes a guard from the subgraph config.
+    - `--modify` - Updates a guard.
