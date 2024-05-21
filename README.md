@@ -35,7 +35,9 @@ based on this anti-pattern.
     - Public facing, typesafe, and logical API. Built around the entities it serves, rather
     than the html it hydrates.
 
-## Getting Started
+## Getting Started 
+
+The content below, for the time being, is purly conceptual and not implemented!
 
 ### Install
 
