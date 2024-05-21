@@ -22,16 +22,18 @@ Hxql ties together modern and familair technologies to create a seamless develop
 based on this anti-pattern.
 
 - HTML First
-    - Write in webs native markup language.
-- Easy and Intuitive Routing
-    - Routing is as easy as making a folder with an `index.html`.
+    - Write in web's native markup language.
+- Recursive Directory Routing
+    - Routing is as easy as making a folder with an `index.html`. 
 - Componentized Development
-    - Serve html components and dynamically inject them into the DOM.
-- Templates
-    - Handblebars compatible.
-    - Easy API requests with automatic data injection.
-- API
-    - Public facing, typesafe, and logical API
+    - Serve html components and dynamically inject them into the DOM using HTMX.
+- Server Side Rendered Templates
+    - Handblebars enabled and Instant Data Access.
+    - No clients to fetch data. Write a graphql query and provide variables and the data
+    becomes instantly available to the template.
+- Entity Driven API
+    - Public facing, typesafe, and logical API. Built around the entities it serves, rather
+    than the html it hydrates.
 
 ## Getting Started
 
