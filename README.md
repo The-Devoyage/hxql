@@ -4,7 +4,8 @@ Start and run a dynamic web app with this cli. Centered around htmx, paired with
 GraphQL, and built with rust - hxql is a cli that can be used to start, run, and 
 interface with an hxql app.
 
-Currently this app is in the early planning stages.
+Currently this app is in the early planning stages. For examples, check out the
+starter repo - https://github.com/The-Devoyage/hxql-starter
 
 ## Hxql Manifesto
 
@@ -39,8 +40,6 @@ based on this "anti-pattern".
     than the html it hydrates.
 
 ## Getting Started 
-
-The content below, for the time being, is purly conceptual and not implemented!
 
 ### Install
 

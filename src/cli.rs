@@ -18,7 +18,7 @@ pub enum Commands {
     Start {
         /// The URL of the GraphQL server.
         #[arg(short, long)]
-        graphql: Url,
+        graphql: Option<Url>,
 
         /// The port to start the server on.
         #[arg(short, long, default_value = "5000")]

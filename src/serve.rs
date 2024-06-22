@@ -10,7 +10,7 @@ pub struct Serve {
     path: warp::filters::path::FullPath,
     body: serde_json::Value,
     search: serde_json::Value,
-    graphql: reqwest::Url,
+    graphql: Option<reqwest::Url>,
     serve_path: std::path::PathBuf,
     enable_hydrate: bool,
     _headers: warp::http::HeaderMap,
@@ -25,7 +25,7 @@ impl Serve {
         path: warp::filters::path::FullPath,
         body: serde_json::Value,
         search: serde_json::Value,
-        graphql: reqwest::Url,
+        graphql: Option<reqwest::Url>,
         serve_path: std::path::PathBuf,
         enable_hydrate: bool,
         headers: warp::http::HeaderMap,
@@ -225,8 +225,13 @@ impl Serve {
         let query = self.get_query();
         let operation_name = self.get_operation_name();
         let variables = self.get_variables();
+        let graphql_url = self.graphql.clone();
 
-        if query.is_some() && operation_name.is_some() && variables.is_some() {
+        if query.is_some()
+            && operation_name.is_some()
+            && variables.is_some()
+            && graphql_url.is_some()
+        {
             let graphql_request = json!({
                 "query": query.unwrap(),
                 "operationName": operation_name.unwrap(),
@@ -234,7 +239,7 @@ impl Serve {
             });
             let client = reqwest::Client::new();
             let request = client
-                .post(self.graphql.clone())
+                .post(graphql_url.unwrap())
                 .json(&graphql_request)
                 .send()
                 .await
