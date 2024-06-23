@@ -1,6 +1,6 @@
 [package]
 name = "hxql"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 description = "Easily build dynamic apps with HTMX, GraphQL, and Handlebars."
 license = "MIT"
