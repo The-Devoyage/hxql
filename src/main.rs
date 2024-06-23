@@ -73,7 +73,7 @@ async fn main() {
             info!("Starting server on port {}", port);
             let ssr_src = src.clone();
 
-            let ssr_route = warp::path::full() // Look into nested routing
+            let ssr_route = warp::path::full()
                 .and(warp::post().or(warp::get()))
                 .and(warp::body::form())
                 .and(warp::query::<serde_json::Value>())

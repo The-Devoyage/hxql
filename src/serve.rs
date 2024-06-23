@@ -146,11 +146,28 @@ impl Serve {
 
     fn get_variables(&self) -> Option<serde_json::Value> {
         if let Some(variables) = self.body.get("variables") {
-            return Some(variables.clone());
+            let v = serde_json::from_str(variables.as_str().unwrap());
+            match v {
+                Ok(v) => Some(v),
+                Err(err) => {
+                    error!("Failed to parse variables: {:?}", err);
+                    None
+                }
+            }
         } else {
             let value = self.search.get("variables");
             match value {
-                Some(v) => Some(v.clone()),
+                Some(v) => {
+                    //Convert v from string to object
+                    let v = serde_json::from_str(v.as_str().unwrap());
+                    match v {
+                        Ok(v) => Some(v),
+                        Err(err) => {
+                            error!("Failed to parse variables: {:?}", err);
+                            None
+                        }
+                    }
+                }
                 None => None,
             }
         }
@@ -238,15 +255,19 @@ impl Serve {
                 "variables": variables.unwrap(),
             });
             let client = reqwest::Client::new();
+            println!("GRAPHQL URL: {:?}", graphql_url);
+            println!("GRAPHQL REQUEST: {:?}", graphql_request);
             let request = client
                 .post(graphql_url.unwrap())
                 .json(&graphql_request)
+                .header("Content-Type", "application/json")
                 .send()
                 .await
                 .map_err(|err| {
                     error!("Failed to send GraphQL Request: {:?}", err);
                     warp::reject::not_found() //TODO: Return a proper error
                 })?;
+            println!("REQUEST: {:?}", request);
             let response = request.json::<serde_json::Value>().await.map_err(|err| {
                 error!("Failed to parse GraphQL Response: {:?}", err);
                 warp::reject::not_found() //TODO: Return a proper error
