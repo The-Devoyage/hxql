@@ -175,11 +175,34 @@ impl Serve {
 
     fn get_props(&self) -> Option<serde_json::Value> {
         if let Some(props) = self.body.get("props") {
-            return Some(props.clone());
+            let v = serde_json::from_str(props.as_str().unwrap());
+            match v {
+                Ok(v) => Some(v),
+                Err(err) => {
+                    error!(
+                        "Failed to parse props: {:?}. Ensure props is of type json object.",
+                        err
+                    );
+                    None
+                }
+            }
         } else {
             let value = self.search.get("props");
             match value {
-                Some(v) => Some(v.clone()),
+                Some(v) => {
+                    //Convert v from string to object
+                    let v = serde_json::from_str(v.as_str().unwrap());
+                    match v {
+                        Ok(v) => Some(v),
+                        Err(err) => {
+                            error!(
+                                "Failed to parse props: {:?}. Ensure props is of type json object.",
+                                err
+                            );
+                            None
+                        }
+                    }
+                }
                 None => None,
             }
         }

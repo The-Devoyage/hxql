@@ -47,13 +47,13 @@ based on this "anti-pattern".
 
 ### Intitalize 
 
-`hxql init`
+`hxql init --name <APP_NAME>`
 
 Creates a directory with a ready to run web application.
 
 ### Run
 
-`hxql start <options>`
+`hxql start <OPTIONS>`
 
 ## API
 
